@@ -15,11 +15,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform playerCamera;
 
 
-    [Header("Amination and Gravity")]
-    [SerializeField] private CharacterController cC;
-    [SerializeField] private float gravity = -9.81f;
-    [SerializeField] Animator animator;
-
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
