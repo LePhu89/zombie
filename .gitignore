@@ -5,3 +5,5 @@ Temp/
 UserSettings/
 *.sln
 *.vsconfig
+obj/
+.vs/
