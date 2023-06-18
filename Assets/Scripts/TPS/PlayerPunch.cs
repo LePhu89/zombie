@@ -13,18 +13,34 @@ public class PlayerPunch : MonoBehaviour
     [SerializeField] private GameObject punchEffect;
     [SerializeField] private GameObject woodEffect;
 
+    [SerializeField] private Animator anim;
+
+    private float nextTimeToPunch = 0f;
+    private float punchChange = 15f;
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToPunch)
+        {
+            anim.SetBool("Punch", true);
+            nextTimeToPunch = Time.time + 1f / punchChange;
+            Punch();
+        }
+        else
+        {
+            anim.SetBool("Punch", false);
+        }
+    }
 
     public void Punch()
     {
-        RaycastHit hitinfo;
-
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hitinfo, punchingRange))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitinfo, punchingRange))
         {
 
             Debug.Log(hitinfo.transform.name);
             Healths healths = hitinfo.transform.GetComponent<Healths>();
             Enemy1 enemy1 = hitinfo.transform.GetComponent<Enemy1>();
-            
+
             if (healths != null)
             {
                 healths.Takedamage(giveDamageOf);
@@ -36,7 +52,7 @@ public class PlayerPunch : MonoBehaviour
                 enemy1.ZombieHitDame(giveDamageOf);
                 GameObject gore = Instantiate(punchEffect, hitinfo.point, Quaternion.LookRotation(hitinfo.normal));
                 Destroy(gore, 1f);
-            }           
+            }
         }
     }
 }
