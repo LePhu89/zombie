@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 489711034}
   - component: {fileID: 489711036}
   - component: {fileID: 489711037}
+  - component: {fileID: 489711038}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -584,6 +585,21 @@ MonoBehaviour:
   - {fileID: 523508250}
   - {fileID: 1741420734}
   - {fileID: 667510444}
+--- !u!114 &489711038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489711029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9bdf11ac5f70e4ba373188f02d2189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rifle: {fileID: 1987396738}
+  _animator: {fileID: 489711031}
+  _blendingDuration: 0.5
 --- !u!4 &494495764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5960182840670230911, guid: 42ac55463210c3e4487cb131a7a3ead1, type: 3}
@@ -1480,8 +1496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa3c447a70445f4b95b3280ef56cbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRifle: {fileID: 1987396736}
-  pickUpRifle: {fileID: 1354189613}
+  _playerWeaponSwitcher: {fileID: 489711038}
   player: {fileID: 489711033}
   WeaponPickedUp:
     m_PersistentCalls:

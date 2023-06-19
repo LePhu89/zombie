@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PickUpp : MonoBehaviour
+public class PickableWeapon : MonoBehaviour
 {
     [Header("Rifle")]
-    [SerializeField] private GameObject playerRifle;
-    [SerializeField] private GameObject pickUpRifle;
+    [SerializeField] private WeaponSwitcher _playerWeaponSwitcher;
     [SerializeField] private Player player;
 
     public UnityEvent WeaponPickedUp;
 
     private float radius = 2.5f;
-
-    private void Awake()
-    {
-        playerRifle.SetActive(false);   
-    }
 
     private void Update()
     {
@@ -25,9 +19,8 @@ public class PickUpp : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                playerRifle.SetActive(true);
-                pickUpRifle.SetActive(false);
-
+                _playerWeaponSwitcher.EquipRifle();
+                gameObject.SetActive(false);
                 WeaponPickedUp.Invoke();
             }
         }        
