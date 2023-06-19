@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     [Header("Player follow camera")]
     [SerializeField] private Transform playerCamera;
 
+    [SerializeField] public PlayerMovement Movement;
+
 
     private void Start()
     {
