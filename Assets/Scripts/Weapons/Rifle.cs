@@ -46,33 +46,29 @@ public class Rifle : MonoBehaviour
             return;
         }
 
-
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeShoot)
-        {           
-            anim.SetBool("Idle", false);
-            anim.SetBool("Fire", true);
-            nextTimeShoot = Time.time + 1f / fireChange;
-            Shoot();
-            
-        }
-        else if (Input.GetButton("Fire1") && Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetButton("Fire1"))
         {
-            anim.SetBool("Idle", false);
-            anim.SetBool("FireWalk", true);
-        }
-        else if(Input.GetButton("Fire2") && Input.GetButton("Fire1"))
-        {
-            anim.SetBool("Idle", false);
-            anim.SetBool("IdleAim", true);
-            anim.SetBool("FireWalk", true);
-            anim.SetBool("Walk", true);
-            anim.SetBool("Reloading", false);
+            anim.SetLayerWeight(2, 1);
+            anim.ResetTrigger("Punch");
+            if (Time.time >= nextTimeShoot)
+            {
+                anim.SetBool("IsMoving", false);
+                nextTimeShoot = Time.time + 1f / fireChange;
+                Shoot();
+            }
+            else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                anim.SetBool("IsMoving", true);
+            }
+            else if (Input.GetButton("Fire2"))
+            {
+                anim.SetBool("IsMoving", false);
+                anim.SetBool("Reloading", true);
+            }
         }
         else
         {
-            anim.SetBool("Fire", false);
-            anim.SetBool("Idle", true);
-            anim.SetBool("FireWalk", false);
+            anim.SetLayerWeight(2, 0);
         }
     }
     private void Shoot()
